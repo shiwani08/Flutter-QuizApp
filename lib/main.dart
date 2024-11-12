@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:quiz/start.dart';
 
 void main() {
-  runApp(MaterialApp(home: Scaffold(
-    body: ,
-  ),));
+  runApp(const MaterialApp(home: Scaffold(
+    body: StartScreen(),
+  ),),
+  );
 }
 
