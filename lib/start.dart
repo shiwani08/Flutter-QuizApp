@@ -9,18 +9,27 @@ class StartScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Start Quiz',
+          'Quiz App',
           style: TextStyle(
             fontSize: 35,
             color: Colors.white60,
           ),
         ),
         elevation: 0,
-        backgroundColor: const Color.fromRGBO(10, 35, 62, 1.0),
+        backgroundColor: Colors.indigo,
         centerTitle: true,
       ),
       body: Container(
-        color: Colors.blueGrey,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [
+              Colors.orange,
+              Colors.deepOrangeAccent
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -49,10 +58,10 @@ class StartScreen extends StatelessWidget {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Questions(),
-                          ),
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Questions(),
+                        ),
                       );
                     },
                     child: const Text(
