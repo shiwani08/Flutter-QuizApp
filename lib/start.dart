@@ -7,18 +7,6 @@ class StartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Quiz App',
-          style: TextStyle(
-            fontSize: 35,
-            color: Colors.white60,
-          ),
-        ),
-        elevation: 0,
-        backgroundColor: Colors.indigo,
-        centerTitle: true,
-      ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
