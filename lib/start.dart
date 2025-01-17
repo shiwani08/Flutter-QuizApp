@@ -6,14 +6,17 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final List<String> selectedAnswers = [];
+
+    void chooseAnswer(String answer) {
+      selectedAnswers.add(answer);
+    }
+
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Colors.orange,
-              Colors.deepOrangeAccent
-            ],
+            colors: [Colors.orange, Colors.deepOrangeAccent],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -48,7 +51,9 @@ class StartScreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Questions(),
+                          builder: (context) => Questions(
+                            onSelectAnswer: chooseAnswer,
+                          ),
                         ),
                       );
                     },
