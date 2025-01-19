@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:quiz/questions.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen({super.key});
+  const StartScreen(this.startQuiz, {super.key});
+
+  final void Function() startQuiz;
 
   @override
   Widget build(BuildContext context) {
@@ -46,24 +48,17 @@ class StartScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
+                  OutlinedButton.icon(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Questions(
-                            onSelectAnswer: chooseAnswer,
-                          ),
-                        ),
-                      );
+                      startQuiz();
                     },
-                    child: const Text(
-                      'Ready?',
-                      style: TextStyle(
-                        fontSize: 20,
-                      ),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: Colors.black,
+                      backgroundColor: Colors.white,
                     ),
-                  )
+                    icon: const Icon(Icons.arrow_right_alt),
+                    label: const Text("Start Quiz"),
+                  ),
                 ],
               ),
             ],

@@ -13,7 +13,13 @@ class Quiz extends StatefulWidget {
 
 class _QuizState extends State<Quiz> {
   List<String> selectedAnswers = [];
-  Widget activeScreen = const StartScreen();
+  Widget? activeScreen;
+
+  @override
+  void initState() {
+    activeScreen = StartScreen(switchScreen);
+    super.initState();
+  }
 
   void switchScreen() {
     setState(() {
@@ -36,7 +42,7 @@ class _QuizState extends State<Quiz> {
     Widget screenWidget = StartScreen(switchScreen);
 
     if(activeScreen == 'questions-screen') {
-      screenWidget = Questions(onSelectAnswer: chooseAnswer),
+      screenWidget = Questions(onSelectAnswer: chooseAnswer);
     }
 
     if(activeScreen == 'results-screen') {
@@ -48,7 +54,7 @@ class _QuizState extends State<Quiz> {
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.blueGrey, Colors.deepOrangeAccent],
+              colors: [Colors.orange, Colors.deepOrangeAccent],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
