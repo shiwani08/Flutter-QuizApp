@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz/data/questionList.dart';
-import 'package:quiz/questions.dart';
+import 'package:quiz/questions_summary.dart';
+import 'package:quiz/quiz.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({super.key, required this.chosenAnswers});
@@ -26,6 +27,12 @@ class ResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final summaryData = getSummaryData();
+    final totalQuestions = questions.length;
+    final correctQuestions = summaryData.where((data) {
+      return data['user_answer'] == data['correct_answer'];
+    }).length;
+
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -33,13 +40,33 @@ class ResultsScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text('these answers are correct'),
+            Text(
+              "You have answered $correctQuestions out of $totalQuestions questions correctly",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+            ),
+            const SizedBox(height: 40),
+            QuestionsSummary(summaryData: summaryData),
             const SizedBox(height: 40),
             const Text("data"),
             const SizedBox(height: 40),
-            TextButton(
-              onPressed: () {},
-              child: const Text("Restart Quiz"),
+            OutlinedButton.icon(
+              onPressed: () {
+                const Quiz();
+              },
+              style: OutlinedButton.styleFrom(
+                foregroundColor: Colors.black,
+                backgroundColor: Colors.white,
+              ),
+              icon: const Icon(Icons.refresh),
+              label: const Text(
+                "Restart Quiz",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ],
         ),
